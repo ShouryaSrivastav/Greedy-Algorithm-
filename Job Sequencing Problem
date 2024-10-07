@@ -1,0 +1,36 @@
+package GreedyAlgorithm;
+
+import java.util.*;
+public class JobSequencingProblem {
+    static class Job{
+        int deadline;
+        int profit;
+        int id;
+        public Job(int a , int b , int c){
+            this.deadline = a;
+            this.profit = b;
+            this.id = c;
+        }
+    }
+    public static void main(String[] args) {
+        int[][] array = {{4,20},{1,10},{1,40},{1,30}};
+        int n = array.length;
+        Job job[] = new Job[n];
+
+        for(int i=0; i<n; i++){
+            job[i] = new Job(array[i][0],array[i][1],i+1);      
+        }
+
+        Arrays.sort(job,(a,b)-> b.profit - a.profit);
+        int endtime = 0;
+
+        for(int i=0; i<n; i++){
+            if(job[i].deadline > endtime){
+                System.out.print(job[i].id);
+                endtime=job[i].deadline;
+            }
+
+        }
+    }
+    
+}
